@@ -70,7 +70,7 @@ const ResetPassword = () => {
                         />
 
                         {errors?.new_password && (
-                            <p className="text-orange-500 text-sm font-figtree">
+                            <p className="text-orange-500 text-sm font-montserrat">
                                 {errors?.new_password?.message as string}
                             </p>
                         )}
@@ -91,7 +91,7 @@ const ResetPassword = () => {
                         />
 
                         {(watch('new_password') !== watch('confirm_password')) && (
-                            <p className='text-xs font-figtree text-danger mt-0.5'>
+                            <p className='text-xs font-montserrat text-danger mt-0.5'>
                                 {t("fields.confirm_password.mismatch")}
                             </p>
                         )}
@@ -101,7 +101,7 @@ const ResetPassword = () => {
                     <button
                         type='submit'
                         disabled={isLoading}
-                        className='bg-primary py-3 font-figtree rounded-lg w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60 text-white cursor-pointer'
+                        className='bg-primary py-3 font-montserrat rounded-lg w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60 text-white cursor-pointer'
                     >
                         {isLoading && (
                             <ImSpinner2 className="text-lg text-white animate-spin" />

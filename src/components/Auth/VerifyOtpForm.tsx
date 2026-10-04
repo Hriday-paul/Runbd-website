@@ -45,11 +45,11 @@ const VerifyOtpForm = () => {
                 </div>
 
                 <div className="flex flex-row justify-center gap-x-5 items-center mt-3">
-                    <Link href={"/auth/resend-otp"} className='bg-primary text-white font-figtree font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 disabled:bg-opacity-80 disabled:cursor-not-allowed'>
+                    <Link href={"/auth/resend-otp"} className='bg-primary text-white font-montserrat font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 disabled:bg-opacity-80 disabled:cursor-not-allowed'>
                         {t("btn.resend")}
                     </Link>
 
-                    <button onClick={submitOtp} disabled={isLoading || otp.length < 6} className='bg-primary text-white font-figtree font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 cursor-pointer disabled:bg-opacity-80 disabled:cursor-not-allowed flex flex-row gap-x-1 items-center'>
+                    <button onClick={submitOtp} disabled={isLoading || otp.length < 6} className='bg-primary text-white font-montserrat font-medium px-6 py-3 rounded text-base hover:bg-opacity-85 duration-200 cursor-pointer disabled:bg-opacity-80 disabled:cursor-not-allowed flex flex-row gap-x-1 items-center'>
                         {isLoading && <ImSpinner2 className="text-xl text-white animate-spin mr-1.5" />}
                         <p>{t("btn.verify")}</p>
                     </button>

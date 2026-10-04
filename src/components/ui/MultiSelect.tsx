@@ -52,19 +52,19 @@ export default function MultipleSelect<T extends FieldValues>({
                 return (
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
-                            <Button variant="outline" role="combobox" aria-expanded={open} className={`w-full justify-between bg-white font-popin shadow-none font-normal text-sm py-[22px] ${errors?.[name]?.message ? "border-danger" : ""}`}>
+                            <Button variant="outline" role="combobox" aria-expanded={open} className={`w-full justify-between bg-white font-montserrat shadow-none font-normal text-sm py-[22px] ${errors?.[name]?.message ? "border-danger" : ""}`}>
                                 {isLoading ? <span className="loader"></span> : selectedValues.length > 0 ? `${selectedValues.length} selected` : placeholder}
                                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-[300px] p-0 font-figtree" side='bottom' align='start'>
+                        <PopoverContent className="w-[300px] p-0 font-montserrat" side='bottom' align='start'>
                             <Command>
                                 <CommandInput placeholder="Search..." />
                                 <CommandList>
                                     <CommandEmpty>No options found.</CommandEmpty>
                                     <CommandGroup>
                                         {items.map((item) => (
-                                            <CommandItem key={item.value} onSelect={() => handleSelect(item.value)} className="hover:bg-zinc-100 duration-150 font-popin">
+                                            <CommandItem key={item.value} onSelect={() => handleSelect(item.value)} className="hover:bg-zinc-100 duration-150 font-montserrat">
                                                 <Check
                                                     className={cn(
                                                         "mr-2 h-4 w-4",

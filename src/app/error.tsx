@@ -26,12 +26,12 @@ export default function Error({
                         <polygon fill="currentColor" points="383.958 182.63 360.042 161.37 338.671 185.412 314.63 164.042 293.37 187.958 317.412 209.329 296.042 233.37 319.958 254.63 341.329 230.588 365.37 251.958 386.63 228.042 362.588 206.671 383.958 182.63"></polygon>
                     </svg>
                     <div>
-                        <p className="text-lg font-popin text-gray-900">Something went wrong</p>
-                        <p className='text-base font-popin text-primary'>{error?.message}</p>
+                        <p className="text-lg font-montserrat text-gray-900">Something went wrong</p>
+                        <p className='text-base font-montserrat text-primary'>{error?.message}</p>
                     </div>
                 </div>
                 <button
-                    className='bg-primary px-4 py-2 rounded-sm text-secondary font-popin hover:bg-opacity-90 duration-200 mx-auto'
+                    className='bg-primary px-4 py-2 rounded-sm text-secondary font-montserrat hover:bg-opacity-90 duration-200 mx-auto'
                     onClick={
                         () => reset()
                     }

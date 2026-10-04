@@ -1,118 +1,89 @@
-import Title from "./Title"
-import car from "../../../../public/categories/car buy sell.svg"
-import carRent from "../../../../public/categories/car rent.svg"
-import bike from "../../../../public/categories/bike buy sell.svg"
-import workshop from "../../../../public/categories/workshop.svg"
-import accessories from "../../../../public/categories/eccessories.svg"
-import document from "../../../../public/categories/document.svg"
-import job from "../../../../public/categories/job.svg"
-import exchange from "../../../../public/categories/exchange.svg"
-import vehicle from "../../../../public/categories/vehicle.svg"
-import lawyer from "../../../../public/categories/lawyer.svg"
-import other from "../../../../public/categories/other.svg"
-import Image from "next/image"
-import Link from "next/link"
-import { getTranslations } from "next-intl/server"
+import React from "react";
+import { Users, ShieldCheck, Tag, Headphones, LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export const categories = [
-    {
-        id: 1,
-        name: "categories.car_buy_sell",
-        rout: "/carbuysell",
-        icon: car
-    },
-    {
-        id: 2,
-        name: "categories.bike_buy_sell",
-        rout: "/bikebuysell",
-        icon: bike
-    },
-    {
-        id: 3,
-        name: "categories.workshops",
-        rout: "/workshop",
-        icon: workshop
-    },
-    {
-        id: 4,
-        name: "categories.accessories",
-        rout: "/accessories",
-        icon: accessories
-    },
-    {
-        id: 5,
-        name: "categories.car_rent",
-        rout: "/car-rent",
-        icon: carRent
-    },
-    {
-        id: 8,
-        name: "categories.vehicle_process",
-        rout: "/vehicle-process",
-        icon: vehicle
-    },
-    {
-        id: 6,
-        name: "categories.job_service",
-        rout: "/jobs",
-        icon: job
-    },
-    {
-        id: 7,
-        name: "categories.exchange",
-        rout: "/exchange",
-        icon: exchange
-    },
-    {
-        id: 11,
-        name: "categories.documents",
-        rout: "/documents",
-        icon: document
-    },
-    {
-        id: 9,
-        name: "categories.lawyer",
-        rout: "/lawyers",
-        icon: lawyer
-    },
-    {
-        id: 10,
-        name: "categories.other",
-        rout: "#",
-        icon: other
-    }
-];
-
-async function Section2() {
-    const t = await getTranslations('Home.section2');
-    return (
-        <div className="bg-white" id="services">
-            <div className="container pt-12 md:pt-16 lg:pt-20 ">
-                <Title title={t("title")} subtitle={t("subtitle")} />
-
-                {/* service categories */}
-                <div className="flex flex-wrap justify-center items-center">
-                    {
-                        categories.map(category => {
-                            return <Link href={category?.rout} key={category?.id} scroll={true} className="p-5 md:p-8 border-r border-b border-stroke duration-200 hover:shadow-[0_0_10px_0_rgba(0,0,0,0.12)]
-w-1/2 md:w-1/3 lg:w-1/4
-[&:nth-child(2n)]:border-r-0
-md:[&:nth-child(2n)]:border-r
-md:[&:nth-child(3n)]:border-r-0
-lg:[&:nth-child(3n)]:border-r
-lg:[&:nth-child(4n)]:border-r-0 last:border-r-0
-
-md:nth-10:border-b-0 nth-11:border-b-0 lg:nth-9:border-b-0
-">
-                                <Image src={category?.icon} alt="runbd category icon" className="h-10 md:h-14 lg:h-16 w-auto mx-auto" />
-                                <h6 className="text-base md:text-lg font-popin font-medium text-center pt-3">{t(category.name)}</h6>
-                            </Link>
-                        })
-                    }
-                </div>
-            </div>
-        </div>
-    )
+interface FeatureItem {
+  id: number;
+  icon: LucideIcon;
+  title: string;
+  description: string;
 }
 
-export default Section2
+const features: FeatureItem[] = [
+  {
+    id: 1,
+    icon: Users,
+    title: "Trust by Thousand",
+    description: "Over 10,000+ satisfied customers trusting our marketplace.",
+  },
+  {
+    id: 2,
+    icon: ShieldCheck,
+    title: "Safe & Secure",
+    description: "100% secure payment gateways & verified digital products.",
+  },
+  {
+    id: 3,
+    icon: Tag,
+    title: "Best Price",
+    description: "Guaranteed top market value and exclusive instant discounts.",
+  },
+  {
+    id: 4,
+    icon: Headphones,
+    title: "24/7 Customer Support",
+    description: "Dedicated round-the-clock support ready to help you anytime.",
+  },
+];
+
+export default function Section2() {
+  return (
+    <section aria-label="Why Choose Us" className="w-full pb-6 md:pb-10">
+      <div className="container mx-auto">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-xl sm:rounded-2xl shadow-sm overflow-hidden">
+          <div className="grid grid-cols-2 lg:grid-cols-4">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              const isEvenColumn = index % 2 === 0;
+              const isTopRowMobile = index < 2;
+              const isNotLastDesktop = index < features.length - 1;
+
+              return (
+                <div
+                  key={feature.id}
+                  className={cn(
+                    "flex items-center gap-2.5 sm:gap-3.5 lg:gap-4 p-3.5 sm:p-5 lg:p-6 xl:p-7 transition-colors duration-200 hover:bg-zinc-50/50 dark:hover:bg-zinc-800/30",
+                    // 2-column mobile borders (horizontal divider between row 1 & 2, vertical divider between col 1 & 2)
+                    isEvenColumn && "border-r border-zinc-200/70 dark:border-zinc-800",
+                    isTopRowMobile && "border-b border-zinc-200/70 dark:border-zinc-800",
+                    // Desktop (lg) overrides: remove bottom border, apply right border to all except the last item
+                    "lg:border-b-0",
+                    isNotLastDesktop ? "lg:border-r" : "lg:border-r-0"
+                  )}
+                >
+                  {/* Reduced icon size on small devices */}
+                  <div className="shrink-0 text-primary dark:text-[#38bdf8]">
+                    <Icon
+                      className="size-6 sm:size-8 lg:size-10"
+                      strokeWidth={1.7}
+                    />
+                  </div>
+
+                  {/* Responsive Text Content */}
+                  <div className="flex flex-col min-w-0">
+                    <h3 className="text-primary dark:text-[#38bdf8] font-medium text-xs sm:text-[15px] lg:text-[17px] leading-tight sm:leading-snug truncate sm:whitespace-normal">
+                      {feature.title}
+                    </h3>
+                    <p className="text-[#3aa4e6] dark:text-zinc-400 text-[11px] sm:text-xs lg:text-[13px] leading-snug sm:leading-relaxed mt-0.5 sm:mt-1 line-clamp-2 sm:line-clamp-none">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

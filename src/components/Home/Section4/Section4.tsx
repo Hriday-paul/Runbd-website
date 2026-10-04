@@ -1,93 +1,93 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import PlanCard from "./PlanCard";
-import Title from "../Section2/Title";
-import { Suspense } from "react";
-import { IPackage } from "@/redux/types";
-import { GetPlans } from "@/lib/services/quer.package";
-import { getTranslations } from "next-intl/server";
+"use client";
 
-export default async function Section4() {
+import React from "react";
+import { motion } from "framer-motion";
+import { CalendarDays, Users, Layers, LucideIcon } from "lucide-react";
+import CountUp from "react-countup";
 
-  const plan = GetPlans();
+interface StatItem {
+  id: number;
+  icon: LucideIcon;
+  prefix?: string;
+  value: number;
+  suffix?: string;
+  label: string;
+}
 
-  const t = await getTranslations('Home.section4');
+const stats: StatItem[] = [
+  {
+    id: 1,
+    icon: CalendarDays,
+    prefix: "Since ",
+    value: 2020,
+    suffix: "",
+    label: "Serving with Trust",
+  },
+  {
+    id: 2,
+    icon: Users,
+    prefix: "",
+    value: 100,
+    suffix: "+",
+    label: "Active Customers",
+  },
+  {
+    id: 3,
+    icon: Layers,
+    prefix: "",
+    value: 50,
+    suffix: "+",
+    label: "Available Services",
+  },
+];
 
+export default function Section4() {
   return (
-    <section className="bg-[#F5F7FA] py-12 md:py-16 lg:py-20" id="pricing">
-      <div className="container">
+    <section aria-label="Our Achievements" className="py-6 md:py-12">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+          {stats.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="group flex flex-col items-center justify-center text-center p-5 sm:p-6 lg:p-8 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-primary/40 transition-all duration-300"
+              >
+                {/* Lucide Icon */}
+                <div className="text-primary dark:text-[#38bdf8] transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="size-7 sm:size-8 lg:size-10" strokeWidth={1.6} />
+                </div>
 
-        <Title subtitle={t("subtitle")} title={t("title")} />
-        <p className="text-center mx-auto max-w-xl text-gray-800 font-popin text-sm">{t("description")}</p>
+                {/* Big Bold Stat Number */}
+                <h3 className="mt-4 sm:mt-5 text-lg sm:text-xl lg:text-2xl font-semibold text-primary dark:text-[#38bdf8] font-montserrat tracking-tight leading-none">
+                  {item.prefix && <span>{item.prefix}</span>}
+                  <CountUp
+                    end={item.value}
+                    duration={2.5}
+                    separator=""
+                    enableScrollSpy
+                    scrollSpyOnce
+                  />
+                  {item.suffix && <span>{item.suffix}</span>}
+                </h3>
 
-        <div>
-
-          <Suspense fallback={
-            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5'>
-
-              <PricingCardSkeleton />
-              <PricingCardSkeleton />
-              <PricingCardSkeleton />
-
-            </div>
-          }>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 my-15 font-figtree">
-              <Plans planPromise={plan} />
-            </div>
-
-          </Suspense>
-
+                {/* Label Subtitle */}
+                <p className="mt-2.5 sm:mt-3 text-sm sm:text-base font-normal text-[#3aa4e6] dark:text-zinc-400 font-montserrat leading-relaxed">
+                  {item.label}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
-
-const Plans = async ({ planPromise }: { planPromise: Promise<{ data: IPackage[] }> }) => {
-
-  const data = await planPromise;
-
-  return (
-
-    data?.data.map((plan, index) => {
-      const isMiddle = index === 1;
-      return (
-        <PlanCard plan={plan} key={plan?.id} isMiddle={isMiddle} />
-      );
-    })
-
-  )
-
-}
-
-export function PricingCardSkeleton() {
-
-  return (
-    <>
-      <div className="w-full border border-stroke bg-white p-8 rounded-xl">
-        {/* Header with plan name and duration */}
-        <div className="mb-8 flex items-start justify-between">
-          <div className="space-y-2">
-            <Skeleton className="h-8 w-20" />
-            <Skeleton className="h-6 w-12" />
-          </div>
-          <Skeleton className="h-6 w-24" />
-        </div>
-
-        {/* Features list */}
-        <div className="mb-8 space-y-4">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <Skeleton className="h-5 w-5 rounded-full" />
-              <Skeleton className="h-5 flex-1" />
-            </div>
-          ))}
-        </div>
-
-        {/* Button */}
-        <Skeleton className="h-12 w-full rounded-full" />
-      </div>
-
-    </>
-  )
-}
-

@@ -58,7 +58,7 @@ export function SelectWithSearch<T extends FieldValues>({
                   role="combobox"
                   aria-expanded={open}
                   disabled={disabled}
-                  className={`w-full justify-between bg-white rounded shadow-none text-sm font-popin py-[22px] font-normal cursor-pointer ${
+                  className={`w-full justify-between bg-white rounded shadow-none text-sm font-montserrat py-[22px] font-normal cursor-pointer ${
                     errors?.[name]?.message ? "border-red-500" : ""
                   }`}
                 >
@@ -73,7 +73,7 @@ export function SelectWithSearch<T extends FieldValues>({
                   <ChevronsUpDown className="opacity-50" />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-[300px] p-0 font-popin">
+              <PopoverContent className="w-[300px] p-0 font-montserrat">
                 <Command>
                   <CommandInput placeholder="Search..." className="h-9" />
                   <CommandList>

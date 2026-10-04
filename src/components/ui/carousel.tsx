@@ -105,6 +105,7 @@ function Carousel({
 
     return () => {
       api?.off("select", onSelect)
+      api?.off("reInit", onSelect)
     }
   }, [api, onSelect])
 
@@ -189,6 +190,7 @@ function CarouselPrevious({
   className,
   variant = "outline",
   size = "icon",
+  children,
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
@@ -209,7 +211,7 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft />
+      {children ?? <ArrowLeft />}
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -219,6 +221,7 @@ function CarouselNext({
   className,
   variant = "outline",
   size = "icon",
+  children,
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
@@ -239,29 +242,41 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight />
+      {children ?? <ArrowRight />}
       <span className="sr-only">Next slide</span>
     </Button>
   )
 }
 
-function CarouselDots({ className, ...props }: React.ComponentProps<"div">) {
-  const { api, currentIndex, scrollTo, opts } = useCarousel()
-  const [slideCount, setSlideCount] = React.useState(0)
+interface CarouselDotsProps extends React.ComponentProps<"div"> {
+  dotClassName?: string
+  activeDotClassName?: string
+}
 
-  // React.useEffect(() => {
-  //   if (!api) return
-  //   let count = api.slideNodes().length
-  //   const isLooping = opts?.loop
-  //   if (isLooping) {
-  //     count = Math.ceil(count / 2)
-  //   }
-  //   setSlideCount(count)
-  // }, [api])
+function CarouselDots({
+  className,
+  dotClassName,
+  activeDotClassName,
+  ...props
+}: CarouselDotsProps) {
+  const { api, currentIndex, scrollTo } = useCarousel()
+  const [slideCount, setSlideCount] = React.useState(0)
 
   React.useEffect(() => {
     if (!api) return
-    setSlideCount(api.scrollSnapList().length)
+
+    const updateCount = () => {
+      setSlideCount(api.scrollSnapList().length)
+    }
+
+    updateCount()
+    api.on("reInit", updateCount)
+    api.on("init", updateCount)
+
+    return () => {
+      api.off("reInit", updateCount)
+      api.off("init", updateCount)
+    }
   }, [api])
 
   return (
@@ -272,8 +287,10 @@ function CarouselDots({ className, ...props }: React.ComponentProps<"div">) {
           type="button"
           onClick={() => scrollTo(index)}
           className={cn(
-            "size-2 rounded-full transition-all",
-            currentIndex === index ? "bg-primary w-6" : "bg-muted-foreground/30 hover:bg-muted-foreground/50",
+            "h-2 rounded-full transition-all duration-300",
+            currentIndex === index
+              ? cn("bg-primary w-6", activeDotClassName)
+              : cn("bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2", dotClassName),
           )}
           aria-label={`Go to slide ${index + 1}`}
           aria-current={currentIndex === index ? "true" : "false"}

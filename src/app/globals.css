@@ -11,18 +11,14 @@
   scroll-behavior: smooth;
 }
 
-.about-section-2::before{
-  background-image: url('../components/About//work-flow-arrow.png');
-}
-
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-popin: var(--font-poppin);
-  --font-figtree: var(--font-figtree);
-  --color-primary: #E20101;
+  --font-montserrat: var(--font-montserrat);
+  --color-primary: #1B8BCC;
   --color-black: #121212;
+  --color-text-blue: #1b8bcc;
 
   --color-danger: #D34053;
   --color-warning: #FFA70B;
@@ -68,7 +64,7 @@
 }
 
 .otpinputStyle {
-  @apply !w-8 md:!w-12 h-8 md:h-12 mx-1 md:mx-2 font-figtree font-medium border !border-stroke duration-200 rounded-sm text-black outline-none bg-transparent text-lg md:text-xl
+  @apply !w-8 md:!w-12 h-8 md:h-12 mx-1 md:mx-2 font-montserrat font-medium border !border-stroke duration-200 rounded-sm text-black outline-none bg-transparent text-lg md:text-xl
 }
 
 :root {

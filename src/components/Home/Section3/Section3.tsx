@@ -1,52 +1,84 @@
-import FeatureAds from './FeatureAds'
-import GetFeatureAds from '@/lib/services/FeatureAdds';
-import { Suspense } from 'react';
-import { LoadingCard } from '@/shared/LoadingCard';
-import { Add } from '@/redux/types';
-import Title from '../Section2/Title';
-import { getTranslations } from 'next-intl/server';
+"use client";
 
-async function Section3() {
-    const featureadd = GetFeatureAds();
-    const t = await getTranslations('Home.section3');
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
+import CategoryChip from "./CategoryChip";
+import ServiceCard from "@/shared/ServiceCard";
+import { serviceCategories, services } from "./services";
+import { Button } from "@/components/ui/button";
+
+const Section3 = () => {
     return (
-        <div className="pt-12 md:pt-16 lg:pt-20">
-            <div className="bg-[#F5F7FA]">
+        <section className="py-6 md:py-12 container">
 
-                <div className='container py-16'>
+            <motion.div
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="mx-auto max-w-230 text-center"
+            >
+                <h2 className="text-3xl leading-[1.2] font-semibold text-black dark:text-white sm:text-3xl lg:text-4xl font-montserrat">
+                    Available Services
+                </h2>
+                <p className="mt-4 text-base text-text-blue dark:text-sky-400 sm:text-base font-montserrat max-w-lg mx-auto">
+                    Explore our wide range of services designed to meet your needs and help you achieve your goals.
+                </p>
+            </motion.div>
 
-                    <Title subtitle={t("subtitle")} title={t("title")} />
+            <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-5 sm:mt-8"
+            >
+                <CategoryChip categories={serviceCategories} />
+            </motion.div>
 
-                    <Suspense fallback={
-                        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5'>
-
-                            <LoadingCard />
-                            <LoadingCard />
-                            <LoadingCard />
-                            <LoadingCard />
-                            <LoadingCard />
-
-                        </div>
-                    }>
-                        <FeatureAddList featureAddPromise={featureadd} />
-                    </Suspense>
-
-
-                </div>
-
+            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3 lg:gap-8">
+                {services.map((course, index) => (
+                    <motion.div
+                        key={course.slug}
+                        initial={{ opacity: 0, y: 28 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{
+                            duration: 0.65,
+                            delay: index * 0.08,
+                            ease: [0.16, 1, 0.3, 1],
+                        }}
+                    >
+                        <ServiceCard service={course} />
+                    </motion.div>
+                ))}
             </div>
-        </div>
-    )
-}
+
+            {/* Centered See All Button */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-8 sm:mt-10 flex justify-center"
+            >
+                <Button
+                    asChild
+                    size="lg"
+                    variant={"outline"}
+                    className="rounded-full px-8 py-3 border-primary hover:bg-primary/90 text-text-blue hover:text-white font-montserrat font-semibold text-base shadow-sm hover:shadow-lg transition-all duration-300 gap-2 cursor-pointer"
+                >
+                    <Link href="/shop">
+                        <span>See All</span>
+                        <ArrowRight className="size-4" />
+                    </Link>
+                </Button>
+            </motion.div>
+
+        </section>
+    );
+};
 
 export default Section3;
-
-const FeatureAddList = async ({ featureAddPromise }: { featureAddPromise: Promise<{ data: { ad: Add, id: number }[] }> }) => {
-
-    const data = await featureAddPromise;
-
-    return (
-        <FeatureAds data={data} />
-    )
-
-}

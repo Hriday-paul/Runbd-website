@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Poppins, Figtree } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
-import { gen_JsonLdGlobal, gen_JsonLdHomePage } from "@/components/JSON_LD/HomeJsonLd";
-import { NextIntlClientProvider } from 'next-intl';
+import ReduxProvider from "@/shared/ReduxProvider";
+import { Toaster } from "sonner";
+import { ToastContainer } from "react-toastify";
+import NextJsTopLoader from "@/shared/NextJsTopLoader";
+import Navbar from "@/shared/Navbar/Navbar";
+import Footer from "@/shared/Footer/Footer";
 
-const poppins = Poppins({
-  variable: "--font-poppin",
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-});
-
-const figtree = Figtree({
-  variable: "--font-figtree",
   subsets: ["latin"],
 });
 
@@ -68,7 +68,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = gen_JsonLdGlobal();
+  // const jsonLd = gen_JsonLdGlobal();
 
   return (
     <html lang="en">
@@ -94,20 +94,39 @@ export default function RootLayout({
         {/* <link rel="manifest" href="/site.webmanifest" /> */}
       </head>
 
-      <body className={`${poppins.variable} ${figtree.variable} antialiased`}>
+      <body className={`${montserrat.variable} antialiased`}>
 
-        <NextIntlClientProvider>
-        {children}
-        </NextIntlClientProvider>
+        <ReduxProvider>
+          {/* <TawkTo /> */}
+          <Toaster richColors position="top-right" closeButton />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
+          <NextJsTopLoader />
+
+          <Navbar />
+          {children}
+          <Footer />
+
+        </ReduxProvider>
 
         {/* ✅ Multiple JSON-LD inject */}
-        {jsonLd.map((item, index) => (
+        {/* {jsonLd.map((item, index) => (
           <script
             key={index}
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
           />
-        ))}
+        ))} */}
       </body>
     </html>
   );

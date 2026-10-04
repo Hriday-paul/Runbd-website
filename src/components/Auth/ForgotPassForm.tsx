@@ -56,18 +56,18 @@ const ForgotPassForm = () => {
             <form onSubmit={handleSubmit(handleFormSubmit)} className="px-5 md:px-7 lg:px-10 mt-5 md:mt-8 lg:mt-10">
 
                 <div className="my-5">
-                    <label htmlFor={"phone"} className={`mb-1.5 font-popin block text-black text-lg`}>
+                    <label htmlFor={"phone"} className={`mb-1.5 font-montserrat block text-black text-lg`}>
                         {t("phone")}
                         <span className="text-red-500 text-base ml-1">*</span>
                     </label>
                     <div className={`w-full flex flex-row items-center border rounded-md ${errors?.phone ? 'border-danger' : 'border-stroke '}`}>
-                        <span className="border-r border-gray-300 px-2 font-popin">+88</span>
+                        <span className="border-r border-gray-300 px-2 font-montserrat">+88</span>
                         <input
                             type="number"
                             id='phone'
                             {...register("phone", { pattern: /^01\d{9}$/, minLength: 11, required: t("phone_required") })}
                             placeholder="01****"
-                            className={`w-full px-2 bg-white py-2.5 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-figtree placeholder:font-figtree rounded-r-md`}
+                            className={`w-full px-2 bg-white py-2.5 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-montserrat placeholder:font-montserrat rounded-r-md`}
                         />
                     </div>
                     {errors.phone && <div className='flex items-center mb-2'>
@@ -76,7 +76,7 @@ const ForgotPassForm = () => {
                     </div>}
                 </div>
 
-                <button type='submit' disabled={isLoading} className='bg-primary py-3 font-figtree rounded-lg w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60 text-white disabled:cursor-not-allowed cursor-pointer'>
+                <button type='submit' disabled={isLoading} className='bg-primary py-3 font-montserrat rounded-lg w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60 text-white disabled:cursor-not-allowed cursor-pointer'>
                     {isLoading && <ImSpinner2 className="text-lg text-white animate-spin" />}
                     <span>{isLoading ? 'Loading...' : "Submit"}</span>
                 </button>
