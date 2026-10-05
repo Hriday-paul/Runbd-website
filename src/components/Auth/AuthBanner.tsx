@@ -18,7 +18,7 @@ export default function AuthBanner({title}: {title?: string}) {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
         {/* Glass Effect Title */}
-        <h1 className="md:px-18 px-10 font-figtree py-2 text-2xl sm:text-3xl md:text-4xl font-semibold text-white backdrop-blur-md bg-white/20 rounded border border-white/30 text-center">
+        <h1 className="md:px-18 px-10 font-montserrat py-2 text-2xl sm:text-3xl md:text-4xl font-semibold text-white backdrop-blur-md bg-white/20 rounded border border-white/30 text-center">
           {title}
         </h1>
       </div>

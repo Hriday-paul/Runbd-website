@@ -24,15 +24,15 @@ function PaymentSuccess() {
 
             <div className="min-h-[70vh] flex items-center justify-center p-4 ">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                    <div className="w-full max-w-md bg-gradient-to-b from-green-50 to-green-100 p-10 rounded-md space-y-8 font-popin border border-stroke">
+                    <div className="w-full max-w-md bg-gradient-to-b from-green-50 to-green-100 p-10 rounded-md space-y-8 font-montserrat border border-stroke">
                         <div>
-                            <div className="text-center text-2xl font-bold text-green-600 flex items-center justify-center font-popin">
+                            <div className="text-center text-2xl font-bold text-green-600 flex items-center justify-center font-montserrat">
                                 <CheckCircle className="mr-2" />
                                 Payment Successful!
                             </div>
                         </div>
                         <div>
-                            <p className="text-center text-gray-600 mb-6 font-popin">
+                            <p className="text-center text-gray-600 mb-6 font-montserrat">
                                 Thank you for your payment. Your payment has been processed successfully.
                             </p>
                         </div>

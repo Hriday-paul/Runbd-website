@@ -5,17 +5,21 @@ import logo from "../../../public/logo.png"
 import payments from "../../../public/payments.jpeg"
 import google_play from "../../../public/google_play.png"
 import apple_store from "../../../public/Apple_Store.webp"
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
+
 
 export default function Footer() {
     return (
         <footer className="">
-            <div className="bg-gray-900 pt-16 font-popin">
+            <div className="bg-gray-900 pt-16 font-montserrat">
                 <div className="mx-auto w-full max-w-[1166px] px-4 xl:px-0">
                     <div className="flex flex-col justify-between sm:px-[18px] md:flex-row md:px-10">
                         <div className="md:w-[316px]">
                             <Link href={"/"}>
-                                <Image src={logo} alt='logo' className='h-12 w-auto object-cover mb-8' />
+                                <div className="flex flex-row gap-x-1 items-center">
+                                    <Image src={logo} alt='logo' className='h-12 md:h-16 xl:h-20 w-auto object-cover' />
+                                    <p className="font-montserrat text-text-blue font-bold text-3xl">DigiMart</p>
+                                </div>
                             </Link>
                             <p className="mt-4 mb-2 text-[15px] font-normal text-white/80">Skip the hassle and delays — easily buy, sell, or access essential services anytime from one reliable and secure platform.</p>
 
@@ -53,8 +57,8 @@ export default function Footer() {
                                     </svg>
                                 </div>
                                 <div className="ml-3">
-                                    <a href="tel:+8801336832636" className="font-popin text-[14px] font-medium text-white">01336-832636</a>
-                                    <p className="font-popin text-[12px] font-medium text-gray-300">Support Number</p>
+                                    <a href="tel:+8801336832636" className="font-montserrat text-[14px] font-medium text-white">01336-832636</a>
+                                    <p className="font-montserrat text-[12px] font-medium text-gray-300">Support Number</p>
                                 </div>
                             </div>
                             <div className="mt-[23px] flex">
@@ -66,8 +70,8 @@ export default function Footer() {
                                     </svg>
                                 </div>
                                 <div className="ml-3">
-                                    <Link href="mailto:runbdorg24@gmail.com" className="font-popin text-[14px] font-medium text-white">runbdorg24@gmail.com</Link>
-                                    <p className="font-popin text-[12px] font-medium text-gray-300">Support Email</p>
+                                    <Link href="mailto:runbdorg24@gmail.com" className="font-montserrat text-[14px] font-medium text-white">runbdorg24@gmail.com</Link>
+                                    <p className="font-montserrat text-[12px] font-medium text-gray-300">Support Email</p>
                                 </div>
                             </div>
                             <div className="mt-[23px] flex">
@@ -79,49 +83,49 @@ export default function Footer() {
                                     </svg>
                                 </div>
                                 <div className="ml-3">
-                                    <p className="font-popin text-[14px] font-medium text-white">Nikunja-2, Dhaka-1229</p>
-                                    <p className="font-popin text-[12px] font-medium text-gray-300">Address</p>
+                                    <p className="font-montserrat text-[14px] font-medium text-white">Nikunja-2, Dhaka-1229</p>
+                                    <p className="font-montserrat text-[12px] font-medium text-gray-300">Address</p>
                                 </div>
                             </div>
                         </div>
                         <div className="mt-6 flex w-full flex-col justify-between text-white sm:flex-row md:mt-0 md:max-w-[341px]">
                             <div className="">
-                                <p className="text-white font-popin text-[18px] font-medium leading-normal">Pages</p>
+                                <p className="text-white font-montserrat text-[18px] font-medium leading-normal">Pages</p>
                                 <ul>
                                     <li className="mt-[15px]">
                                         <Link
-                                            className="text-white font-popin text-[15px] font-normal hover:font-semibold duration-150"
+                                            className="text-white font-montserrat text-[15px] font-normal hover:font-semibold duration-150"
                                             href="/">Home</Link>
                                     </li>
 
                                     <li className="mt-[15px]">
                                         <Link
-                                            className="text-white font-popin text-[15px] font-normal hover:font-semibold duration-150"
+                                            className="text-white font-montserrat text-[15px] font-normal hover:font-semibold duration-150"
                                             href="/carbuysell">Cars Buy/sell</Link>
                                     </li>
 
                                     <li className="mt-[15px]">
                                         <Link
-                                            className="text-white font-popin text-[15px] font-normal hover:font-semibold"
+                                            className="text-white font-montserrat text-[15px] font-normal hover:font-semibold"
                                             href="/bikebuysell">Bikes Buy/sell</Link>
                                     </li>
 
                                     <li className="mt-[15px]">
                                         <Link
-                                            className="text-white font-popin text-[15px] font-normal hover:font-semibold"
+                                            className="text-white font-montserrat text-[15px] font-normal hover:font-semibold"
                                             href="/car-rent">Car Rent</Link>
                                     </li>
 
                                     <li className="mt-[15px]">
                                         <Link
-                                            className="text-white font-popin text-[15px] font-normal hover:font-semibold"
+                                            className="text-white font-montserrat text-[15px] font-normal hover:font-semibold"
                                             href="/Vehicle Process">Vehicle Process</Link>
                                     </li>
 
                                 </ul>
                             </div>
                             <div className="mt-6 flex flex-col gap-4 sm:mt-0">
-                                <p className="text-white font-popin text-[18px] font-medium">Download the app</p>
+                                <p className="text-white font-montserrat text-[18px] font-medium">Download the app</p>
                                 <div className="flex gap-4 sm:flex-col">
                                     <Link href="#">
                                         <Image src={google_play} alt="Google Play" width={500} height={200} className="object-contain h-10 w-auto" />

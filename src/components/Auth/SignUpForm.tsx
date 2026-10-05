@@ -108,7 +108,7 @@ const SignUpForm = () => {
                     <div className='flex flex-row gap-x-3 mb-4'>
                         {/* -----------------first name-------------- */}
                         <div className="w-full mx-auto">
-                            <label htmlFor='firstname' className="mb-1.5 block text-black   font-popin">
+                            <label htmlFor='firstname' className="mb-1.5 block text-black   font-montserrat">
                                 {t("fields.first_name.label")}
                                 <span className="text-red-500 text-base ml-1">*</span>
                             </label>
@@ -117,14 +117,14 @@ const SignUpForm = () => {
                                 id='firstname'
                                 {...register("first_name", { required: t("fields.first_name.required"), })}
                                 placeholder={t("fields.first_name.placeholder")}
-                                className={`w-full rounded-md border bg-white  py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-popin placeholder:font-popin ${errors?.first_name ? 'border-danger' : 'border-stroke '}`}
+                                className={`w-full rounded-md border bg-white  py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-montserrat placeholder:font-montserrat ${errors?.first_name ? 'border-danger' : 'border-stroke '}`}
                             />
-                            {errors?.first_name && <p className="text-orange-500 text-sm col-span-2 font-popin">{errors?.first_name?.message}</p>}
+                            {errors?.first_name && <p className="text-orange-500 text-sm col-span-2 font-montserrat">{errors?.first_name?.message}</p>}
                         </div>
 
                         {/* -----------------last name-------------- */}
                         <div className="w-full mx-auto">
-                            <label htmlFor='lastname' className="mb-1.5 block text-black   font-popin">
+                            <label htmlFor='lastname' className="mb-1.5 block text-black   font-montserrat">
                                 {t("fields.last_name.label")}
                                 {/* <span className="text-red-500 text-base ml-1">*</span> */}
                             </label>
@@ -133,25 +133,25 @@ const SignUpForm = () => {
                                 id='lastname'
                                 {...register("last_name")}
                                 placeholder={t("fields.last_name.placeholder")}
-                                className={`w-full rounded-md border bg-white  py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-popin placeholder:font-popin ${errors?.last_name ? 'border-danger' : 'border-stroke '}`}
+                                className={`w-full rounded-md border bg-white  py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-montserrat placeholder:font-montserrat ${errors?.last_name ? 'border-danger' : 'border-stroke '}`}
                             />
-                            {errors?.last_name && <p className="text-red-500 text-sm col-span-2 font-popin">{errors?.last_name?.message}</p>}
+                            {errors?.last_name && <p className="text-red-500 text-sm col-span-2 font-montserrat">{errors?.last_name?.message}</p>}
                         </div>
                     </div>
 
                     <div className="my-5">
-                        <label htmlFor={"phone"} className={`mb-1.5 font-popin block text-black text-lg`}>
+                        <label htmlFor={"phone"} className={`mb-1.5 font-montserrat block text-black text-lg`}>
                             {t("fields.phone.label")}
                             <span className="text-red-500 text-base ml-1">*</span>
                         </label>
                         <div className={`w-full flex flex-row items-center border rounded-md ${errors?.phone ? 'border-danger' : 'border-stroke '}`}>
-                            <span className="border-r border-gray-300 px-2 font-popin">+88</span>
+                            <span className="border-r border-gray-300 px-2 font-montserrat">+88</span>
                             <input
                                 type="number"
                                 id='phone'
                                 {...register("phone", { pattern: /^01\d{9}$/, minLength: 11, required: true })}
                                 placeholder="01****"
-                                className={`w-full px-2 bg-white py-2.5 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-popin placeholder:font-popin rounded-r-md`}
+                                className={`w-full px-2 bg-white py-2.5 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-montserrat placeholder:font-montserrat rounded-r-md`}
                             />
                         </div>
                         {errors.phone && <div className='flex items-center mb-2'>
@@ -162,7 +162,7 @@ const SignUpForm = () => {
 
                     {/* -----------------email-------------- */}
                     <div className="w-full mx-auto mb-4">
-                        <label htmlFor='email' className="mb-1.5 block text-black font-popin">
+                        <label htmlFor='email' className="mb-1.5 block text-black font-montserrat">
                             {t("fields.email.label")}
                             {/* <span className="text-red-500 text-base ml-1">*</span> */}
                         </label>
@@ -176,9 +176,9 @@ const SignUpForm = () => {
                                 }
                             })}
                             placeholder="xyz@gmail.com"
-                            className={`w-full rounded-md border bg-white  py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-popin placeholder:font-popin ${errors?.email ? 'border-danger' : ' border-stroke '}`}
+                            className={`w-full rounded-md border bg-white  py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter font-montserrat placeholder:font-montserrat ${errors?.email ? 'border-danger' : ' border-stroke '}`}
                         />
-                        {errors?.email && <p className="text-orange-500 text-sm col-span-2 font-popin">{errors?.email?.message}</p>}
+                        {errors?.email && <p className="text-orange-500 text-sm col-span-2 font-montserrat">{errors?.email?.message}</p>}
                     </div>
 
                     {/* -----------------Password Input-------------- */}
@@ -200,7 +200,7 @@ const SignUpForm = () => {
                             }}
                         />
                         {errors?.password && (
-                            <p className="text-orange-500 text-sm col-span-2 font-figtree">{errors?.password?.message as string}</p>
+                            <p className="text-orange-500 text-sm col-span-2 font-montserrat">{errors?.password?.message as string}</p>
                         )}
                     </div>
 
@@ -219,7 +219,7 @@ const SignUpForm = () => {
                             }}
                         />
 
-                        {(watch('password') !== watch('confirmPassword')) && <p className='text-xs font-popin text-danger mt-0.5'>{t("fields.confirm_password.mismatch")}</p>}
+                        {(watch('password') !== watch('confirmPassword')) && <p className='text-xs font-montserrat text-danger mt-0.5'>{t("fields.confirm_password.mismatch")}</p>}
 
                     </div>
 
@@ -235,7 +235,7 @@ const SignUpForm = () => {
                                     </svg>
                                 </span>
                             </label>
-                            <label className="ml-1.5 text-zinc-500 font-popin text-sm capitalize" htmlFor={"terms"}>
+                            <label className="ml-1.5 text-zinc-500 font-montserrat text-sm capitalize" htmlFor={"terms"}>
                                 {t("fields.terms.label", {
                                     terms: t("fields.terms.terms"),
                                     privacy: t("fields.terms.privacy")
@@ -244,13 +244,13 @@ const SignUpForm = () => {
                         </div>
                     </div>
 
-                    <button type='submit' disabled={isLoading} className='bg-primary py-3 font-popin text-secondary rounded-lg w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60 text-white disabled:cursor-not-allowed cursor-pointer'>
+                    <button type='submit' disabled={isLoading} className='bg-primary py-3 font-montserrat text-secondary rounded-lg w-full mt-5 hover:bg-opacity-90 duration-200 flex flex-row gap-x-2 items-center justify-center disabled:bg-opacity-60 text-white disabled:cursor-not-allowed cursor-pointer'>
                         {isLoading && <ImSpinner2 className="text-lg text-white animate-spin" />}
                         <span>{isLoading ? t("button.loading") : watch("role") == "Vendor" ? t("button.sign_up") : t("button.sign_up_free")}</span>
                     </button>
 
                     <div>
-                        <h5 className='text-gray-900 font-popin text-sm md:text-base text-center mt-3'>{t("login_prompt")}<Link className='text-primary' href='/auth/login'> {t("login_now")}</Link></h5>
+                        <h5 className='text-gray-900 font-montserrat text-sm md:text-base text-center mt-3'>{t("login_prompt")}<Link className='text-primary' href='/auth/login'> {t("login_now")}</Link></h5>
                     </div>
 
                 </form>
